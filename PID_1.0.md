@@ -40,12 +40,17 @@ Px_Error_rate - Rated error.
           Att_dErr_X = (tau*Att_dErr_X)/(tau+dtx) + (Px_Error_rate - Px_Error_rateOld) / (tau+dtx);
           Px_Error_rateOld = Px_Error_rate;
 ```
+Att_dErr_X - The rate of change in error overtime i.e. error over time
 
 ##### INTEGRAL
 ```
 Iax = Iax + kix*Px_Error_rate*dtx
 ```
+Iax - is summ of error overtime until Att_error_X = 0
 
+##### OUTPUT
+
+OutAtti_x =  kpx*Px_Error_rate + Iax + kdx*Att_dErr_X;
 
 ##### Sample Code
 ```
