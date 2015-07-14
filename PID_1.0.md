@@ -49,8 +49,9 @@ Iax = Iax + kix*Px_Error_rate*dtx
 Iax - is summ of error overtime until Att_error_X = 0
 
 ##### OUTPUT
-
+```
 OutAtti_x =  kpx*Px_Error_rate + Iax + kdx*Att_dErr_X;
+```
 
 ##### Sample Code
 ```
