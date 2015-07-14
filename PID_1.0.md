@@ -1,28 +1,45 @@
 ### PID ALGORITHM
 
+##### PID INPUTS
+
+ Acc_x - Angle of rotation about the axis (i.e. x-x) in degrees, zero on level, positive or negative on tilt
+ 
+ Gyr_x - The rate of rotation about the axis (i.e. x-x) in degrees per seconds. Output zero when on static (at any angle),            and positive or negative on rotation.
+ 
+ SetRollsAbout_X - Transmitter stick input, zero on center, and set an tilt angle on movement.
+ 
+ dtx - This is the lapse or loop time a PID is called, the period normally in proper timing or syncronized with motor PWM   
+       output.
+
 ##### ERROR AND SETPOINT
 
 ```
 Att_error_X = Acc_x - SetRollsAbout_X;         
 
 XSetpoint_rate = (tau*XSetpoint_rate/(tau+dtx)) + ((SetRollsAbout_X - SetRollsAbout_Xold)/(tau+dtx));
+SetRollsAbout_Xold = SetRollsAbout_X;
 ```
 
+Att_error_X - The attitude error from desired rated setpoint "XSetpoint_rate" from 1. being level or 2. from setpoint angle desired by stick movement.
 
+XSetpoint_rate - The rate of error outputed by stick movement, Zero on center stick, and depending on the direction, it is positive of negative on stick movement.
 
+SetRollsAbout_Xold - Recorded the old value of "SetRollsAbout_X"
 
 ##### RATE P
 ```
 Px_Error_rate = XSetpoint_rate * krx + Att_error_X * kpxx + kg*Gyr_x;
 ```
-XSetpoint_rate - The rate of error outputed by stick movement, Zero on center stick, and depending on the direction, it is positive of negative on stick movement.
-
-Att_error_X - The attitude error from desired rated setpoint "XSetpoint_rate" from 1. being level or 2. from setpoint angle desired by stick movement.
-
 Gyr_x - This the filtered gyroscope output on respective axis
 
 Px_Error_rate - Rated error.
 
+
+##### DERIVATIVE
+```
+          Att_dErr_X = (tau*Att_dErr_X)/(tau+dtx) + (Px_Error_rate - Px_Error_rateOld) / (tau+dtx);
+          Px_Error_rateOld = Px_Error_rate;
+```
 
 
 ##### Sample Code
