@@ -30,7 +30,7 @@ SetRollsAbout_Xold - Recorded the old value of "SetRollsAbout_X"
 ```
 Px_Error_rate = XSetpoint_rate * krx + Att_error_X * kpxx + kg*Gyr_x;
 ```
-Gyr_x - This the filtered gyroscope output on respective axis
+Gyr_x - It will act as Lag compensation.
 
 Px_Error_rate - Rated error.
 
@@ -39,6 +39,11 @@ Px_Error_rate - Rated error.
 ```
           Att_dErr_X = (tau*Att_dErr_X)/(tau+dtx) + (Px_Error_rate - Px_Error_rateOld) / (tau+dtx);
           Px_Error_rateOld = Px_Error_rate;
+```
+
+##### INTEGRAL
+```
+Iax = Iax + kix*Px_Error_rate*dtx
 ```
 
 
