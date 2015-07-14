@@ -106,11 +106,6 @@ float erRangeX=deadBand;
       if ((OutputAtt_x <= Output_XMax) && (OutputAtt_x >=Output_XMin)){Output_X=OutputAtt_x;} 
           else if  (OutputAtt_x>Output_XMax)  {Output_X= Output_XMax;}//Stop integration at limits
           else if  (OutputAtt_x<Output_XMin)  {Output_X= Output_XMin;}//Stop integration at limits
-/*******************************DEBUG****************************************************************/    
-      //Serial.print(Acc_x);Serial.print("\t");Serial.print(PIDix);Serial.print("\t");Serial.print(kpx*Px_Error_rate);Serial.print("\t");Serial.print(Iax);Serial.print("\t");Serial.print(kdx*Att_dErr_X); Serial.print("\t");Serial.print(Output_X);Serial.println();
-      //Serial.print(Acc_x);Serial.print("\t");Serial.print(PIDix);Serial.print("\t");Serial.print(Output_X);Serial.println();
-      //Serial.print(Acc_x);Serial.print("\t");Serial.print(P*px);Serial.print("\t");Serial.print(Ix*ix);Serial.print("\t");Serial.print(D); Serial.print("\t");Serial.print(PIDix);Serial.println();
-
    }
      else
      {
