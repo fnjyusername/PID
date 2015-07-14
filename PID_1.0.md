@@ -1,10 +1,31 @@
-PID ALGORITHM
+### PID ALGORITHM
+
+##### ERROR AND SETPOINT
+
+```
+Att_error_X = Acc_x - SetRollsAbout_X;         
+
+XSetpoint_rate = (tau*XSetpoint_rate/(tau+dtx)) + ((SetRollsAbout_X - SetRollsAbout_Xold)/(tau+dtx));
+```
+
+
+
 
 ##### RATE P
 ```
 Px_Error_rate = XSetpoint_rate * krx + Att_error_X * kpxx + kg*Gyr_x;
 ```
+XSetpoint_rate - The rate of error outputed by stick movement, Zero on center stick, and depending on the direction, it is positive of negative on stick movement.
 
+Att_error_X - The attitude error from desired rated setpoint "XSetpoint_rate" from 1. being level or 2. from setpoint angle desired by stick movement.
+
+Gyr_x - This the filtered gyroscope output on respective axis
+
+Px_Error_rate - Rated error.
+
+
+
+##### Sample Code
 ```
 void Compute_Aileron(unsigned long dtx)
 {dtx =dtx*0.001; 
