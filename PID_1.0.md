@@ -28,7 +28,10 @@ SetRollsAbout_Xold - Recorded the old value of "SetRollsAbout_X"
 
 ##### RATE P
 ```
-Px_Error_rate = XSetpoint_rate * krx + Att_error_X * kpxx + kg*Gyr_x;
+Px_Error_rate = XSetpoint_rate * krx + Att_error_X * kpxx + kg*Gyr_x; 
+
+Note:
+Alternative to Gyr_x can be (Att_error_X - Att_error_Xold)/dtx; 
 ```
 Gyr_x - It will act as Lag compensation.
 
